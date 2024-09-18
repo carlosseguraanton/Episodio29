@@ -32,6 +32,83 @@ public final class CapturadorPixeles {
 
 	}
 
+		public static int[] obtenerSprite(Sprite sprite) {
+
+		for (int y = 0; y < Sprite.lado; y++) {
+
+			int posicionDestinoY = y;
+
+			if (posicionDestinoY >= 0 && posicionDestinoY < alto) {
+
+				for (int x = 0; x < Sprite.lado; x++) {
+
+					int posicionDestinoX = x;
+
+					if (posicionDestinoX >= 0 && posicionDestinoX < ancho) {
+
+						int indexDelPixelDestino = posicionDestinoX + posicionDestinoY * ancho;
+
+						int posicionOrigenX = x & Sprite.mascara;
+						int posicionOrigenY = y & Sprite.mascara;
+
+						int indexDelPixelOrigen = posicionOrigenX + posicionOrigenY * Sprite.lado;
+
+						int valorDelPixelOrigen = sprite.pixeles[indexDelPixelOrigen];
+
+						pixeles[indexDelPixelDestino] = valorDelPixelOrigen;
+
+					}
+
+				}
+
+			}
+
+		}
+		
+		return pixeles;
+
+	}
+	
+	public static int[] capturarUobtenerSpriteDesplazado(int desplazamientoX, int desplazamientoY, Sprite sprite) {
+
+		desplazamientoX = desplazamientoX - x;
+		desplazamientoY = desplazamientoY - y;
+
+		for (int y = 0; y < Sprite.lado; y++) {
+
+			int posicionDestinoY = y + desplazamientoY;;
+
+			if (posicionDestinoY >= 0 && posicionDestinoY < alto) {
+
+				for (int x = 0; x < Sprite.lado; x++) {
+
+					int posicionDestinoX = x + desplazamientoX;
+
+					if (posicionDestinoX >= 0 && posicionDestinoX < ancho) {
+
+						int indexDelPixelDestino = posicionDestinoX + posicionDestinoY * ancho;
+
+						int posicionOrigenX = x & Sprite.mascara;
+						int posicionOrigenY = y & Sprite.mascara;
+
+						int indexDelPixelOrigen = posicionOrigenX + posicionOrigenY * Sprite.lado;
+
+						int valorDelPixelOrigen = sprite.pixeles[indexDelPixelOrigen];
+
+						pixeles[indexDelPixelDestino] = valorDelPixelOrigen;
+
+					}
+
+				}
+
+			}
+
+		}
+		
+		return pixeles;
+
+	}
+
 	public static int[] obtenerSprite(Sprite sprite) {
 
 		for (int y = 0; y < Sprite.lado; y++) {
