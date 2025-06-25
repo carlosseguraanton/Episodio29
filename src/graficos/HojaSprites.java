@@ -8,16 +8,16 @@ import javax.imageio.ImageIO;
 
 public final class HojaSprites {
 
+	private String ruta;
+	
 	private final int x;
 	private final int y;
-
-	private String ruta;
-
-	private BufferedImage img;
+	
+	int totalPixeles;
 
 	public int[] pixeles;
 	
-	int totalPixeles;
+	private BufferedImage image;
 
 	// coleccion de hojas de sprites
 	public static HojaSprites desierto = new HojaSprites("/images/texturas/desierto.png", 320, 320);
@@ -35,16 +35,14 @@ public final class HojaSprites {
 		totalPixeles = x * y;
 		
 		pixeles = new int[totalPixeles];
-
-		BufferedImage imagen;
 		
 		try {
 
 			URL url = HojaSprites.class.getResource(ruta);
 			
-			imagen = ImageIO.read(url);
+			image = ImageIO.read(url);
 
-			pixeles = imagen.getRGB(0, 0, x, y, null, 0, x);
+			pixeles = image.getRGB(0, 0, x, y, null, 0, x);
 			
 		} catch (IOException e) {
 			
@@ -66,15 +64,15 @@ public final class HojaSprites {
 		
 	}
 
-	public BufferedImage getImg() {
+	public BufferedImage getImage() {
 		
-		return img;
+		return image;
 		
 	}
 
-	public void setImg(BufferedImage img) {
+	public void setImage(BufferedImage image) {
 		
-		this.img = img;
+		this.image = image;
 		
 	}
 
